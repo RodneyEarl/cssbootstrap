@@ -23,6 +23,7 @@
   <span class="has-tooltip" data-toggle="tooltip" title="<%= "Created on #{todo.created_at.strftime("%m/%e/%Y at %w:%M %p")}, Last modified on #{todo.updated_at.strftime("%m/%e/%Y at %w:%M %p")}" %>">
     <%= todo.title %>
   </span>
+
 </td>
         <td><% if todo.notes? %>
   <!-- Button trigger modal -->
@@ -46,7 +47,11 @@
       </div>
     </div>
   </div>
-<% end %></td>
+<% end %>
+<% if todo.notes? %>
+  <button type="button" class="btn btn-link has-popover" data-toggle="popover" title="Notes" data-content="<%= todo.notes %>">View notes (popover)</button>
+<% end %>
+</td>
         <td><%= link_to 'Show', todo %></td>
         <td><%= link_to 'Edit', edit_todo_path(todo) %></td>
         <td><%= link_to 'Destroy', todo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
